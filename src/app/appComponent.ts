@@ -51,7 +51,8 @@ export class AppComponent {
             project: 'all'
         }
         
-        
+        var sideMenue:any=$('#side-menu');
+        sideMenue.metisMenu();
         
     }
 }
