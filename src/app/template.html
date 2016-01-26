@@ -1,0 +1,64 @@
+<!-- Navigation -->
+<a id="menu-toggle" class="btn btn-dark btn-lg toggle" (click)="toggleMenue($event)"><i class="fa fa-bars"></i></a>
+<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <a id="menu-close" class="btn btn-light btn-lg pull-right toggle" (click)="toggleMenue($event)"><i class="fa fa-times"></i></a>
+        <li class="sidebar-brand">
+            <a  [routerLink]="['Home']" (click)="toggleMenue($event)">(a)TimeSheet</a>
+        </li>
+        <li>
+            <a [routerLink]="['Home']" (click)="toggleMenue($event)">Home</a>
+        </li>
+        <li>
+            <a [routerLink]="['TimeSheet', 'Record']" (click)="toggleMenue($event)">Erfassung</a>
+        </li>
+        <li>
+            <a [routerLink]="['TimeSheet', 'List']" (click)="toggleMenue($event)">Report</a>
+        </li>
+        <li>
+            <a [routerLink]="['TimeSheet', 'Export', currentMonth]" (click)="toggleMenue($event)">Export (dieser Monat)</a>
+        </li>
+                <li>
+            <a [routerLink]="['TimeSheet', 'Export', lastMonth]" (click)="toggleMenue($event)">Export (letzter Monat)</a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Header -->
+<header id="top" class="header">
+    <router-outlet></router-outlet>
+</header>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h4><strong>ATimeSheet</strong>
+                </h4>
+                <p>with AngularJS2</p>
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-code-fork"></i> Version 0.1</li>
+                </ul>
+                <br>
+
+                <hr class="small">
+                <p class="text-muted">Copyright &copy; gedoplan, dominik mathmann</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Custom Theme JavaScript -->
+<script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function (e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+</script>
