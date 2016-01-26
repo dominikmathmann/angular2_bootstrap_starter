@@ -16,7 +16,7 @@ gulp.task('copy:deps', function () {
     gulp.src([
         'node_modules/bootstrap/dist/**'
     ]).pipe(gulp.dest('dist/vendor/bootstrap'));
-    
+
     gulp.src([
         'node_modules/font-awesome/css/**',
         'node_modules/font-awesome/fonts/**'
@@ -73,5 +73,5 @@ gulp.task('server', ['copy:deps', 'copy:src', 'compile:app'], function () {
 //default task
 gulp.task('default', ['server'], function () {
     gulp.watch(['src/**/*.ts'], ['compile:app']);
-    gulp.watch(['src/**/.js', 'src/**/*.html'], ['copy:src']);
+    gulp.watch(['src/**/.js', 'src/**/*.html', 'src/**/*.css'], ['copy:src']);
 });
