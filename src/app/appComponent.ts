@@ -12,45 +12,7 @@ import {HomeComponent} from './components/home/homeComponent'
 ])
 export class AppComponent {
 
-    closeMenue(e: any) {
-        e.preventDefault();
-        jQuery("#sidebar-wrapper").toggleClass("active");
-    }
-
-    toggleMenue(e: any) {
-        e.preventDefault();
-        jQuery("#sidebar-wrapper").toggleClass("active");
-    }
-
-
-    currentMonth:any;
-    lastMonth:any;
-    
-    ngOnInit () {
-        var format:string="DD.MM.YYYY"
-        var now = moment();
-        
-        var from = moment(now.format(format), format);
-        var to = from.clone();
-        to.add(1, "months");
-        
-
-        var urlDateFormat="DD-MM-YYYY";
-        this.currentMonth= {
-            from: moment(from).format(urlDateFormat),
-            to: moment(to).format(urlDateFormat),
-            project: 'all'
-        }
-        
-        from.add(-1, "months");
-        to.add(-1, "months");
-        
-        this.lastMonth= {
-            from: moment(from).format(urlDateFormat),
-            to: moment(to).format(urlDateFormat),
-            project: 'all'
-        }
-        
+    ngOnInit () {       
         var sideMenue:any=$('#side-menu');
         sideMenue.metisMenu();
         

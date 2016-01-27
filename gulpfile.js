@@ -7,6 +7,7 @@ var ts = require('gulp-typescript');
 var tsConfig = require('./tsconfig.json');
 var connect = require('gulp-connect');
 var rimraf = require('gulp-rimraf');
+var sourcemaps = require('gulp-sourcemaps');
 
 //Typescript Config;
 var tsProject = ts.createProject(tsConfig.compilerOptions);
@@ -54,7 +55,9 @@ gulp.task('clean', function (cb) {
 //compile app typescript files
 gulp.task('compile:app', function () {
     return gulp.src(['src/**/*.ts', 'typings/**/*.d.ts'])
+            .pipe(sourcemaps.init())
             .pipe(ts(tsProject))
+            .pipe(sourcemaps.write())
             .pipe(gulp.dest('./dist'))
             .pipe(connect.reload());
 });
@@ -74,4 +77,17 @@ gulp.task('server', ['copy:deps', 'copy:src', 'compile:app'], function () {
 gulp.task('default', ['server'], function () {
     gulp.watch(['src/**/*.ts'], ['compile:app']);
     gulp.watch(['src/**/.js', 'src/**/*.html', 'src/**/*.css'], ['copy:src']);
+});
+
+//install maven (local)
+var maven = require('gulp-maven-deploy');
+
+gulp.task('install', ['copy:deps', 'copy:src', 'compile:app'], function () {
+    gulp.src('./dist')
+            .pipe(maven.install({
+                'config': {
+                    'groupId': 'de.gedoplan',
+                    'type': 'war'
+                }
+            }));
 });

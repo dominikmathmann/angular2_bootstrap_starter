@@ -5,7 +5,7 @@ import {provide} from 'angular2/core'
 import {HTTP_PROVIDERS} from 'angular2/http'
 
 
-let restBaseUrl='http://localhost:8080/TimeSheet/rest/timesheet/';
+let restBaseUrl='http://localhost:8080/project/rest';
 
 bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
